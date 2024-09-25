@@ -217,7 +217,7 @@
             this.btna8.Name = "btna8";
             this.btna8.Size = new System.Drawing.Size(100, 101);
             this.btna8.TabIndex = 1;
-            this.btna8.Tag = "\"b,rook,a8\"";
+            this.btna8.Tag = "";
             this.btna8.Click += new System.EventHandler(this.btna8_Click);
             // 
             // btnb8
@@ -361,7 +361,7 @@
             this.btna7.Name = "btna7";
             this.btna7.Size = new System.Drawing.Size(100, 101);
             this.btna7.TabIndex = 9;
-            this.btna7.Tag = "\"b,pawn,a7\"";
+            this.btna7.Tag = "";
             this.btna7.Click += new System.EventHandler(this.btna7_Click);
             // 
             // btnb7
@@ -505,7 +505,7 @@
             this.btna6.Name = "btna6";
             this.btna6.Size = new System.Drawing.Size(100, 101);
             this.btna6.TabIndex = 17;
-            this.btna6.Tag = "a6";
+            this.btna6.Tag = "";
             this.btna6.Click += new System.EventHandler(this.btna6_Click);
             // 
             // btnb6
@@ -650,7 +650,7 @@
             this.btna5.Name = "btna5";
             this.btna5.Size = new System.Drawing.Size(100, 101);
             this.btna5.TabIndex = 25;
-            this.btna5.Tag = "a5";
+            this.btna5.Tag = "";
             this.btna5.Click += new System.EventHandler(this.btna5_Click);
             // 
             // btnb5
@@ -794,7 +794,7 @@
             this.btna4.Name = "btna4";
             this.btna4.Size = new System.Drawing.Size(100, 101);
             this.btna4.TabIndex = 33;
-            this.btna4.Tag = "a4";
+            this.btna4.Tag = "";
             this.btna4.Click += new System.EventHandler(this.btna4_Click);
             // 
             // btnb4
@@ -938,7 +938,7 @@
             this.btna3.Name = "btna3";
             this.btna3.Size = new System.Drawing.Size(100, 101);
             this.btna3.TabIndex = 41;
-            this.btna3.Tag = "a3";
+            this.btna3.Tag = "";
             this.btna3.Click += new System.EventHandler(this.btna3_Click);
             // 
             // btnb3
@@ -1082,7 +1082,7 @@
             this.btna2.Name = "btna2";
             this.btna2.Size = new System.Drawing.Size(100, 101);
             this.btna2.TabIndex = 49;
-            this.btna2.Tag = "\"w,pawn,a2\"";
+            this.btna2.Tag = "";
             this.btna2.Click += new System.EventHandler(this.btna2_Click);
             // 
             // btnb2
@@ -1226,7 +1226,7 @@
             this.btna1.Name = "btna1";
             this.btna1.Size = new System.Drawing.Size(100, 101);
             this.btna1.TabIndex = 57;
-            this.btna1.Tag = "\"w,rook,a1\"";
+            this.btna1.Tag = "";
             this.btna1.Click += new System.EventHandler(this.btna1_Click);
             // 
             // btnb1

@@ -40,7 +40,7 @@ namespace Chess
 
         private static bool CanMove(Guna2Button currentButton)
         {
-            return (currentButton.Tag == null);
+            return (currentButton.Tag.ToString() == "");
         }
 
         public static void IntroducingThePawnOneStepForward(Guna2Button previousPressedButton, Guna2Button currentButton, stPieceInfo piece)
@@ -62,23 +62,23 @@ namespace Chess
             //previousPressedButton.Image = null;
         }
 
-        public static void MovePawnForOneStep(Guna2Button previousPressedButton, Guna2Button currentButton, bool isInitialMove, stPieceInfo piece)
+        public static void MovePawnForOneStep(Guna2Button previousPressedButton, Guna2Button currentButton, bool isInitialMove, stPieceInfo previousPiece)
         {
             if (CanMove(currentButton) && _tag == previousPressedButton.Tag.ToString())
             {
-                if (IsCorrectColor(piece, enColors.w) && IsValidMoveForWhitePawn(previousPressedButton, currentButton, isInitialMove))
+                if (IsCorrectColor(previousPiece, enColors.w) && IsValidMoveForWhitePawn(previousPressedButton, currentButton, isInitialMove))
                 {
-                    IntroducingThePawnOneStepForward(previousPressedButton, currentButton, piece);
+                    IntroducingThePawnOneStepForward(previousPressedButton, currentButton, previousPiece);
                 }
 
-                else if (IsCorrectColor(piece, enColors.b) && IsValidMoveForBlackPawn(previousPressedButton, currentButton, isInitialMove))
+                else if (IsCorrectColor(previousPiece, enColors.b) && IsValidMoveForBlackPawn(previousPressedButton, currentButton, isInitialMove))
                 {
-                    IntroducingThePawnOneStepForward(previousPressedButton, currentButton, piece);
+                    IntroducingThePawnOneStepForward(previousPressedButton, currentButton, previousPiece);
                 }
 
                 else if (IsValidCaptureMove(previousPressedButton, currentButton))
                 {
-                    IntroducingThePawnOneStepForward(previousPressedButton, currentButton, piece);
+                    IntroducingThePawnOneStepForward(previousPressedButton, currentButton, previousPiece);
                 }
             }
 
@@ -106,20 +106,22 @@ namespace Chess
             //}
         }
 
-        public static void MovePawnForOneStepOrTwo(Guna2Button previousPressedButtonInRow2, Guna2Button previousPressedButtonInRow3, Guna2Button currentButton, stPieceInfo piece)
+        public static void MovePawnForOneStepOrTwo(Guna2Button previousPressedButtonInRow2, Guna2Button previousPressedButtonInRow3, Guna2Button currentButton, stPieceInfo previousPiece)
         {
-            if (CanMove(currentButton) && (_tag == previousPressedButtonInRow2.Tag.ToString()
-                || _tag == previousPressedButtonInRow3.Tag.ToString()))
+            if (CanMove(currentButton) && (_tag == previousPressedButtonInRow2.Tag.ToString() || _tag == previousPressedButtonInRow3.Tag.ToString()))
             {
                 if (IsValidMoveForWhitePawn(previousPressedButtonInRow3, currentButton, false))
                 {
-                    IntroducingThePawnOneStepForward(previousPressedButtonInRow3, currentButton, piece);
-                }
+                    IntroducingThePawnOneStepForward(previousPressedButtonInRow3, currentButton, previousPiece);
 
+                    return;
+                }
 
                 if (IsValidMoveForWhitePawn(previousPressedButtonInRow2, currentButton, true))
                 {
-                    IntroducingThePawnOneStepForward(previousPressedButtonInRow2, currentButton, piece);
+                    IntroducingThePawnOneStepForward(previousPressedButtonInRow2, currentButton, previousPiece);
+
+                    return;
                 }
             }
         }

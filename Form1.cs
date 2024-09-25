@@ -70,94 +70,193 @@ namespace Chess
             }
         }
 
-        private void FillFirstAndSecondTagInfo(Guna2Button button, ref string firstInfo, ref string secondInfo)
+        stPieceInfo _previousPiece;
+
+        private void FillFirstTagInfo(Guna2Button button, ref string firstInfo)
         {
             if (button.Image == _whitePawnImage)
             {
                 firstInfo = enColors.w.ToString();
-                secondInfo = enChessPieces.pawn.ToString();
+                //secondInfo = enChessPieces.pawn.ToString();
             }
-                
+
             else if (button.Image == _whiteKnightImage)
             {
                 firstInfo = enColors.w.ToString();
-                secondInfo = enChessPieces.knight.ToString();
+                //secondInfo = enChessPieces.knight.ToString();
 
             }
 
             else if (button.Image == _whiteBishopImage)
             {
                 firstInfo = enColors.w.ToString();
-                secondInfo = enChessPieces.bishop.ToString();
+                //secondInfo = enChessPieces.bishop.ToString();
             }
 
             else if (button.Image == _whiteKingImage)
             {
                 firstInfo = enColors.w.ToString();
-                secondInfo = enChessPieces.king.ToString();
+                //secondInfo = enChessPieces.king.ToString();
             }
-              
+
             else if (button.Image == _whiteQueenImage)
             {
                 firstInfo = enColors.w.ToString();
-                secondInfo = enChessPieces.queen.ToString();
-            }           
+                //secondInfo = enChessPieces.queen.ToString();
+            }
 
             else if (button.Image == _whiteRookImage)
             {
                 firstInfo = enColors.w.ToString();
-                secondInfo = enChessPieces.rook.ToString();
+                //secondInfo = enChessPieces.rook.ToString();
             }
 
-            else if(button.Image == _blackPawnImage)
+            else if (button.Image == _blackPawnImage)
             {
                 firstInfo = enColors.b.ToString();
-                secondInfo = enChessPieces.pawn.ToString();
+                //secondInfo = enChessPieces.pawn.ToString();
             }
-               
+
             else if (button.Image == _blackKnightImage)
             {
                 firstInfo = enColors.b.ToString();
-                secondInfo = enChessPieces.knight.ToString();
+                //secondInfo = enChessPieces.knight.ToString();
             }
 
             else if (button.Image == _blackBishopImage)
             {
                 firstInfo = enColors.b.ToString();
-                secondInfo = enChessPieces.bishop.ToString();
+                //secondInfo = enChessPieces.bishop.ToString();
             }
 
             else if (button.Image == _blackKingImage)
             {
                 firstInfo = enColors.b.ToString();
-                secondInfo = enChessPieces.king.ToString();
+                //secondInfo = enChessPieces.king.ToString();
             }
 
             else if (button.Image == _blackQueenImage)
             {
                 firstInfo = enColors.b.ToString();
-                secondInfo = enChessPieces.queen.ToString();
+                //secondInfo = enChessPieces.queen.ToString();
             }
 
             else if (button.Image == _blackRookImage)
             {
                 firstInfo = enColors.b.ToString();
-                secondInfo = enChessPieces.rook.ToString();
-            }         
+                //secondInfo = enChessPieces.rook.ToString();
+            }
+
+            else
+                firstInfo = "";
         }
 
-        private void FillTagInfo(string thirdInfo, Guna2Button button)
+        private void FillSecondTagInfo(Guna2Button button, ref string secondInfo)
+        {
+            if (button.Image == _whitePawnImage)
+            {
+                //firstInfo = enColors.w.ToString();
+                secondInfo = enChessPieces.pawn.ToString();
+            }
+
+            else if (button.Image == _whiteKnightImage)
+            {
+                //firstInfo = enColors.w.ToString();
+                secondInfo = enChessPieces.knight.ToString();
+
+            }
+
+            else if (button.Image == _whiteBishopImage)
+            {
+                //firstInfo = enColors.w.ToString();
+                secondInfo = enChessPieces.bishop.ToString();
+            }
+
+            else if (button.Image == _whiteKingImage)
+            {
+                //firstInfo = enColors.w.ToString();
+                secondInfo = enChessPieces.king.ToString();
+            }
+
+            else if (button.Image == _whiteQueenImage)
+            {
+                //firstInfo = enColors.w.ToString();
+                secondInfo = enChessPieces.queen.ToString();
+            }
+
+            else if (button.Image == _whiteRookImage)
+            {
+                //firstInfo = enColors.w.ToString();
+                secondInfo = enChessPieces.rook.ToString();
+            }
+
+            else if (button.Image == _blackPawnImage)
+            {
+                //firstInfo = enColors.b.ToString();
+                secondInfo = enChessPieces.pawn.ToString();
+            }
+
+            else if (button.Image == _blackKnightImage)
+            {
+                //firstInfo = enColors.b.ToString();
+                secondInfo = enChessPieces.knight.ToString();
+            }
+
+            else if (button.Image == _blackBishopImage)
+            {
+                //firstInfo = enColors.b.ToString();
+                secondInfo = enChessPieces.bishop.ToString();
+            }
+
+            else if (button.Image == _blackKingImage)
+            {
+                //firstInfo = enColors.b.ToString();
+                secondInfo = enChessPieces.king.ToString();
+            }
+
+            else if (button.Image == _blackQueenImage)
+            {
+                //firstInfo = enColors.b.ToString();
+                secondInfo = enChessPieces.queen.ToString();
+            }
+
+            else if (button.Image == _blackRookImage)
+            {
+                //firstInfo = enColors.b.ToString();
+                secondInfo = enChessPieces.rook.ToString();
+            }
+
+            else
+                secondInfo = "";
+        }
+
+        private stPieceInfo GetColorInfo(Guna2Button button)
+        {
+            string firstInfo = "";
+
+            FillFirstTagInfo(button, ref firstInfo);
+
+            return new stPieceInfo(firstInfo, "", "");
+        }
+
+        private void FillFinalTagInfo(Guna2Button button, string thirdInfo)
         {
             string firstInfo = "", secondInfo = "";
 
-            FillFirstAndSecondTagInfo(button, ref firstInfo, ref secondInfo);
+            FillFirstTagInfo(button, ref firstInfo);
+            FillSecondTagInfo(button,ref secondInfo);
 
             _tag = firstInfo + "," + secondInfo + "," + thirdInfo;
         }
 
-        private stPieceInfo SeparateTagInfo(string thirdInfo, Guna2Button button)
+        private stPieceInfo SeparateTagInfo(string thirdInfo, Guna2Button button, bool isStepOne = true)
         {
-            FillTagInfo(thirdInfo, button);
+            if (isStepOne == true)
+                return GetColorInfo(button);
+
+            if (isStepOne == false)
+                FillFinalTagInfo(button, thirdInfo);
+
 
             string[] tagInfo = _tag.Split(',');
 
@@ -186,7 +285,7 @@ namespace Chess
         }
 
 
-        private void Button_Click(object sender, EventArgs e)
+        private bool IsFirstClick(object sender, EventArgs e)
         {
             Guna2Button clickedButton = sender as Guna2Button;
 
@@ -194,16 +293,22 @@ namespace Chess
             {
                 if(IsValidSelection(clickedButton))
                 {
-                    _selectedButton = clickedButton;
+                    _selectedButton = clickedButton;      
+
                     _isFirstClick = false;
                 }
+
+                return true;
             }
 
             else
             {
+
                 ChangeTurn();
 
                 _isFirstClick = true;
+
+                return false;
             }
         }
         private void ChangeTurn()
@@ -416,26 +521,44 @@ namespace Chess
 
         private void btna2_Click(object sender, EventArgs e)
         {
-            stPieceInfo piece = SeparateTagInfo("a2", btna2);
+            stPieceInfo piece = SeparateTagInfo("a2", btna2, true);
 
-            clsPawn.MovePawnForOneStep(btna3, btna2, false, piece);
+            if(!IsFirstClick(sender, e))
+                clsPawn.MovePawnForOneStep(btna3, btna2, false, _previousPiece);
+
 
             //if (/*_currentTurn == enChoice.Black && */_tag == btnb3.Tag.ToString())
             //    clsPawn.CapturePawn(btnb3, btna2);
 
-            Button_Click(sender, e);
+            
 
+            piece = SeparateTagInfo("a2", btna2, false);
+
+            _previousPiece = piece;
+
+            btna2.Tag = _tag;
+
+            //IsFirstClick(sender, e);
         }
         
         private void btna3_Click(object sender, EventArgs e)
         {
-            stPieceInfo piece = SeparateTagInfo("a3", btna3);
+            stPieceInfo piece = SeparateTagInfo("a3", btna3, true);
 
-            clsPawn.MovePawnForOneStep(btna2, btna3, true, piece);
-            clsPawn.MovePawnForOneStep(btna4, btna3, false, piece);
+            if (!IsFirstClick(sender, e))
+            {
+                clsPawn.MovePawnForOneStep(btna2, btna3, true, _previousPiece);
+                clsPawn.MovePawnForOneStep(btna4, btna3, false, _previousPiece);
+            }
+                
 
+            piece = SeparateTagInfo("a3", btna3, false);
 
-            Button_Click(sender, e);
+            _previousPiece = piece;
+
+            btna3.Tag = _tag;
+
+            // IsFirstClick(sender, e);
         }
 
         private void btnb1_Click(object sender, EventArgs e)
@@ -447,7 +570,7 @@ namespace Chess
             //if (/*_currentTurn == enChoice.Black && */_tag == btna2.Tag.ToString())
             //    clsPawn.CapturePawn(btna2, btnb1);
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
 
            
         }
@@ -464,7 +587,7 @@ namespace Chess
             //if (/*_currentTurn == enChoice.White && */_tag == btna2.Tag.ToString())
             //    clsPawn.CapturePawn(btna2, btnb3);
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         
@@ -476,7 +599,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnc4, btnc3, false, piece);
 
             
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnd3_Click(object sender, EventArgs e)
@@ -487,7 +610,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnd4, btnd3, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btne3_Click(object sender, EventArgs e)
@@ -498,7 +621,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btne4, btne3, false, piece);
 
             
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnf3_Click(object sender, EventArgs e)
@@ -510,7 +633,7 @@ namespace Chess
 
            
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btng3_Click(object sender, EventArgs e)
@@ -521,7 +644,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btng4, btng3, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnh3_Click(object sender, EventArgs e)
@@ -533,19 +656,27 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
         
         private void btna4_Click(object sender, EventArgs e)
         {
-            stPieceInfo piece = SeparateTagInfo("a4", btna4);
+            stPieceInfo piece = SeparateTagInfo("a4", btna4, true);
 
-            clsPawn.MovePawnForOneStepOrTwo(btna2, btna3, btna4, piece);
-            clsPawn.MovePawnForOneStep(btna5, btna4, false, piece);
+            if (!IsFirstClick(sender, e))
+            {
+                clsPawn.MovePawnForOneStepOrTwo(btna2, btna3, btna4, _previousPiece);
+                clsPawn.MovePawnForOneStep(btna5, btna4, false, _previousPiece);
+            }
 
-            
 
-            Button_Click(sender, e );
+            piece = SeparateTagInfo("a4", btna4, false);
+
+            _previousPiece = piece;
+
+            btna4.Tag = _tag;
+
+            //IsFirstClick(sender, e );
         }
 
         private void btnb4_Click(object sender, EventArgs e)
@@ -557,7 +688,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnc4_Click(object sender, EventArgs e)
@@ -568,7 +699,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnc5, btnc4, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnd4_Click(object sender, EventArgs e)
@@ -580,7 +711,7 @@ namespace Chess
 
            
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btne4_Click(object sender, EventArgs e)
@@ -592,7 +723,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnf4_Click(object sender, EventArgs e)
@@ -604,7 +735,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btng4_Click(object sender, EventArgs e)
@@ -615,7 +746,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btng5, btng4, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnh4_Click(object sender, EventArgs e)
@@ -626,7 +757,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnh5, btnh4, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnb2_Click(object sender, EventArgs e)
@@ -635,7 +766,7 @@ namespace Chess
 
             clsPawn.MovePawnForOneStep(btnb3, btnb2, false, piece);
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnc2_Click(object sender, EventArgs e)
@@ -646,7 +777,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnd2_Click(object sender, EventArgs e)
@@ -657,7 +788,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btne2_Click(object sender, EventArgs e)
@@ -668,7 +799,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnf2_Click(object sender, EventArgs e)
@@ -679,7 +810,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btng2_Click(object sender, EventArgs e)
@@ -690,7 +821,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnh2_Click(object sender, EventArgs e)
@@ -701,7 +832,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnc1_Click(object sender, EventArgs e)
@@ -712,7 +843,7 @@ namespace Chess
 
       
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btna1_Click(object sender, EventArgs e)
@@ -721,7 +852,7 @@ namespace Chess
 
             clsPawn.MovePawnForOneStep(btna2, btna1, false, piece);
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btng1_Click(object sender, EventArgs e)
@@ -732,7 +863,7 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnd1_Click(object sender, EventArgs e)
@@ -743,7 +874,7 @@ namespace Chess
 
            
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btne1_Click(object sender, EventArgs e)
@@ -754,7 +885,7 @@ namespace Chess
 
            
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnf1_Click(object sender, EventArgs e)
@@ -765,7 +896,7 @@ namespace Chess
 
            
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnh1_Click(object sender, EventArgs e)
@@ -776,18 +907,28 @@ namespace Chess
 
             
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btna5_Click(object sender, EventArgs e)
         {
             stPieceInfo piece = SeparateTagInfo("a5", btna5);
 
-            clsPawn.MovePawnForOneStep(btna4, btna5, false, piece);
-            clsPawn.MovePawnForOneStepOrTwo(btna7, btna6, btna5, piece);
+            if (!IsFirstClick(sender, e))
+            {
+                clsPawn.MovePawnForOneStep(btna4, btna5, false, _previousPiece);
+                clsPawn.MovePawnForOneStepOrTwo(btna7, btna6, btna5, _previousPiece);
+            }
 
 
-            Button_Click(sender, e);
+            piece = SeparateTagInfo("a5", btna5, false);
+
+            _previousPiece = piece;
+
+            btna5.Tag = _tag;
+
+
+            //IsFirstClick(sender, e);
         }
 
         private void btnb5_Click(object sender, EventArgs e)
@@ -798,7 +939,7 @@ namespace Chess
             clsPawn.MovePawnForOneStepOrTwo(btnb7, btnb6, btnb5, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnc5_Click(object sender, EventArgs e)
@@ -809,7 +950,7 @@ namespace Chess
             clsPawn.MovePawnForOneStepOrTwo(btnc7, btnc6, btnc5, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnd5_Click(object sender, EventArgs e)
@@ -820,7 +961,7 @@ namespace Chess
             clsPawn.MovePawnForOneStepOrTwo(btnd7, btnd6, btnd5, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btne5_Click(object sender, EventArgs e)
@@ -831,7 +972,7 @@ namespace Chess
             clsPawn.MovePawnForOneStepOrTwo(btne7, btne6, btne5, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnf5_Click(object sender, EventArgs e)
@@ -842,7 +983,7 @@ namespace Chess
             clsPawn.MovePawnForOneStepOrTwo(btnf7, btnf6, btnf5, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btng5_Click(object sender, EventArgs e)
@@ -853,7 +994,7 @@ namespace Chess
             clsPawn.MovePawnForOneStepOrTwo(btng7, btng6, btng5, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnh5_Click(object sender, EventArgs e)
@@ -864,20 +1005,30 @@ namespace Chess
             clsPawn.MovePawnForOneStepOrTwo(btnh7, btnh6, btnh5, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         
 
         private void btna6_Click(object sender, EventArgs e)
         {
-            stPieceInfo piece = SeparateTagInfo("a6", btna6);
-
-            clsPawn.MovePawnForOneStep(btna5, btna6, false, piece);
-            clsPawn.MovePawnForOneStep(btna7, btna6, true, piece);
+            stPieceInfo piece = SeparateTagInfo("a6", btna6, true);
 
 
-            Button_Click(sender, e);
+            if (!IsFirstClick(sender, e))
+            {
+                clsPawn.MovePawnForOneStep(btna5, btna6, false, _previousPiece);
+                clsPawn.MovePawnForOneStep(btna7, btna6, true, _previousPiece);
+            }
+               
+
+            piece = SeparateTagInfo("a6", btna6, false);
+
+            _previousPiece = piece;
+
+            btna6.Tag = _tag;
+
+            //IsFirstClick(sender, e);
 
         }
 
@@ -889,7 +1040,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnb7, btnb6, true, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnc6_Click(object sender, EventArgs e)
@@ -900,7 +1051,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnc7, btnc6, true, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnd6_Click(object sender, EventArgs e)
@@ -911,7 +1062,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnd7, btnd6, true, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btne6_Click(object sender, EventArgs e)
@@ -922,7 +1073,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btne7, btne6, true, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnf6_Click(object sender, EventArgs e)
@@ -933,7 +1084,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnf7, btnf6, true, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btng6_Click(object sender, EventArgs e)
@@ -944,7 +1095,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btng7, btng6, true, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnh6_Click(object sender, EventArgs e)
@@ -955,17 +1106,24 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnh7, btnh6, true, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btna7_Click(object sender, EventArgs e)
         {
-            stPieceInfo piece = SeparateTagInfo("a7", btna7);
+            stPieceInfo piece = SeparateTagInfo("a7", btna7, true);
 
-            clsPawn.MovePawnForOneStep(btna6, btna7, false, piece);
+            if (!IsFirstClick(sender, e))
+                clsPawn.MovePawnForOneStep(btna6, btna7, false, _previousPiece);
 
 
-            Button_Click(sender, e);
+            piece = SeparateTagInfo("a7", btna7, false);
+
+            _previousPiece = piece;
+
+            btna7.Tag = _tag;
+
+            //IsFirstClick(sender, e);
         }
 
         private void btnb7_Click(object sender, EventArgs e)
@@ -975,7 +1133,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnb6, btnb7, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnc7_Click(object sender, EventArgs e)
@@ -985,7 +1143,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnc6, btnc7, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnd7_Click(object sender, EventArgs e)
@@ -995,7 +1153,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnd6, btnd7, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btne7_Click(object sender, EventArgs e)
@@ -1005,7 +1163,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btne6, btne7, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnf7_Click(object sender, EventArgs e)
@@ -1015,7 +1173,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnf6, btnf7, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btng7_Click(object sender, EventArgs e)
@@ -1025,7 +1183,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btng6, btng7, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnh7_Click(object sender, EventArgs e)
@@ -1035,7 +1193,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnh6, btnh7, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btna8_Click(object sender, EventArgs e)
@@ -1045,7 +1203,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btna7, btna8, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnb8_Click(object sender, EventArgs e)
@@ -1055,7 +1213,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnb7, btnb8, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnc8_Click(object sender, EventArgs e)
@@ -1065,7 +1223,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnc7, btnc8, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnd8_Click(object sender, EventArgs e)
@@ -1075,7 +1233,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnd7, btnd8, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btne8_Click(object sender, EventArgs e)
@@ -1085,7 +1243,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btne7, btne8, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnf8_Click(object sender, EventArgs e)
@@ -1095,7 +1253,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnf7, btnf8, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btng8_Click(object sender, EventArgs e)
@@ -1105,7 +1263,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btng7, btng8, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void btnh8_Click(object sender, EventArgs e)
@@ -1115,7 +1273,7 @@ namespace Chess
             clsPawn.MovePawnForOneStep(btnh7, btnh8, false, piece);
 
 
-            Button_Click(sender, e);
+            IsFirstClick(sender, e);
         }
 
         private void ResetGame()
